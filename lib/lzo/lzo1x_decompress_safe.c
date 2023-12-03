@@ -75,19 +75,12 @@ int lzo1x_decompress_safe(const unsigned char *in, size_t in_len,
 		if (t < 16) {
 			if (likely(state == 0)) {
 				if (unlikely(t == 0)) {
-					size_t offset;
-					const unsigned char *ip_last = ip;
-
 					while (unlikely(*ip == 0)) {
+						t += 255;
 						ip++;
 						NEED_IP(1, 0);
 					}
-					offset = ip - ip_last;
-					if (unlikely(offset > MAX_255_COUNT))
-						return LZO_E_ERROR;
-
-					offset = (offset << 8) - offset;
-					t += offset + 15 + *ip++;
+					t += 15 + *ip++;
 				}
 				t += 3;
 copy_literal_run:
@@ -143,10 +136,8 @@ copy_literal_run:
 		} else if (t >= 32) {
 			t = (t & 31) + (3 - 1);
 			if (unlikely(t == 2)) {
-				size_t offset;
-				const unsigned char *ip_last = ip;
-
 				while (unlikely(*ip == 0)) {
+					t += 255;
 					ip++;
 					NEED_IP(1, 0);
 				}
@@ -163,10 +154,8 @@ copy_literal_run:
 			m_pos -= (t & 8) << 11;
 			t = (t & 7) + (3 - 1);
 			if (unlikely(t == 2)) {
-				size_t offset;
-				const unsigned char *ip_last = ip;
-
 				while (unlikely(*ip == 0)) {
+					t += 255;
 					ip++;
 					NEED_IP(1, 0);
 				}

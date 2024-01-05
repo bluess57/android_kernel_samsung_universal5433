@@ -125,8 +125,6 @@ void pipe_wait(struct pipe_inode_info *pipe)
 static int
 pipe_iov_copy_from_user(void *addr, int *offset, struct iovec *iov,
 			size_t *remaining, int atomic)
-pipe_iov_copy_from_user(void *addr, int *offset, struct iovec *iov,
-			size_t *remaining, int atomic)
 {
 	unsigned long copy;
 

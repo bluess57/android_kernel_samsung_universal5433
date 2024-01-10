@@ -542,7 +542,7 @@ static int acm_notify_serial_state(struct f_acm *acm)
 	int			status;
 	__le16			serial_state;
 
-	spin_lock_irqsave(&acm->lock, flags);
+	spin_lock(&acm->lock);
 
 	if (acm->notify_req) {
 		DBG(cdev, "acm ttyGS%d serial state %04x\n",
@@ -554,7 +554,7 @@ static int acm_notify_serial_state(struct f_acm *acm)
 		acm->pending = true;
 		status = 0;
 	}
-	spin_unlock_irqrestore(&acm->lock, flags);
+	spin_unlock(&acm->lock);
 	return status;
 }
 

@@ -96,6 +96,7 @@
 		battery,temp_adc_type = <1>; /* SEC_BATTERY_ADC_TYPE_AP */
 
 		battery,polling_time = <10 30 30 30 3600>;
+		battery,chg_temp_check = <0>;
 
 		battery,temp_table_adc = <429 489 556 639 722 824 851 878 904 931 955 979 1003 1027  1051 1077 1103
 					 1131 1159 1187 1235 1284 1333 1518 1655 1792 1978 2165 2363 2562 2758 2794

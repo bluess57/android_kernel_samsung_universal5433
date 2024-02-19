@@ -279,11 +279,9 @@ static int s3c_pm_enter(suspend_state_t state)
 	}
 
 	s3c_pm_save_uarts();
-	s3c_pm_save_core();
 
 	/* set the irq configuration for wake */
 
-	s3c_pm_configure_extint();
 	s3c_pm_arch_prepare_irqs();
 
 	/* call cpu specific preparation */
@@ -306,7 +304,6 @@ static int s3c_pm_enter(suspend_state_t state)
 
 	/* restore the system state */
 
-	s3c_pm_restore_core();
 	s3c_pm_restore_uarts();
 
 	if (!of_have_populated_dt()) {

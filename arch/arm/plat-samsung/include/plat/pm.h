@@ -60,8 +60,6 @@ extern unsigned char pm_uart_udivslot;  /* true to save UART UDIVSLOT */
 
 extern void s3c_cpu_resume(void);
 
-extern int s3c2410_cpu_suspend(unsigned long);
-
 /* sleep save info */
 
 /**
@@ -159,14 +157,6 @@ extern void s3c_pm_check_store(void);
 #endif
 
 /**
- * s3c_pm_configure_extint() - ensure pins are correctly set for IRQ
- *
- * Setup all the necessary GPIO pins for waking the system on external
- * interrupt.
- */
-extern void s3c_pm_configure_extint(void);
-
-/**
  * samsung_pm_restore_gpios() - restore the state of the gpios after sleep.
  *
  * Restore the state of the GPIO pins after sleep, which may involve ensuring
@@ -181,6 +171,3 @@ extern void samsung_pm_restore_gpios(void);
  * Save the GPIO states for resotration on resume. See samsung_pm_restore_gpios().
  */
 extern void samsung_pm_save_gpios(void);
-
-extern void s3c_pm_save_core(void);
-extern void s3c_pm_restore_core(void);
